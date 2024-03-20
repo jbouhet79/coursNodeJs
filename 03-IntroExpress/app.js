@@ -3,93 +3,65 @@ const morgan = require('morgan');
 const cors = require('cors');
 const app = express();
 
+// definition du moteur de template
+app.set('view engine', 'ejs')
+
+// definition des views (si elles ne sont pas dans un dossier views, mais toto)
+// app.set('views', 'toto');
+
 app.use('/public', express.static(__dirname + '/public'))
 app.use(morgan('dev'));
 app.use(cors());
 
+let title = "";
+let currentPage = "";
+let { subtitle, projects } = require('./data');
+
 app.use((rep, res, next) => {
     console.log('Time: %d', Date.now());
-    next()                  // next permet de passer le use, défini par defaut (il execute en meme tps qu'il passe à la suite)
+    next()
 })
 
 app.get('/', (req, res) => {
-    res.redirect(301, '/home')   // redirige vers home + chgt de status
-    // res.sendFile('views/home.html', {root : __dirname})  // sendFile -> renvoi vers un fichier
+    res.redirect(301, '/home')
 })
 
-
 app.get('/home', (req, res) => {
-    res.status(200).sendFile('views/home.html', { root: __dirname })
-    // res.send('<h1>Hello World !</h1>')  // send -> envoi un reponse
+    let title = 'Portfolio de Jérôme';
+    currentPage = 'home';
+    res.status(200).render('home', { title, subtitle, currentPage, projects })
 })
 
 app.get('/formation', (req, res) => {
-    res.status(200).sendFile('views/formation.html', { root: __dirname })   // __dirname --> vers le chemin absolu
+    let title = 'Mon parcours de formation';
+    currentPage = 'formation';
+    res.status(200).render('formation', { title, subtitle, currentPage })
 })
 
 app.get('/entreprise', (req, res) => {
-    res.status(200).sendFile('views/entreprise.html', { root: __dirname })
-
+    let title = 'Présentation de la MAIF';
+    currentPage = 'entreprise';
+    res.status(200).render('entreprise', { title, subtitle, currentPage })
 })
 
 app.get('/profil', (req, res) => {
-    res.status(200).sendFile('views/profil.html', { root: __dirname })
-
+    let title = 'Mon parcours';
+    currentPage = 'profil';
+    res.status(200).render('profil', { title, subtitle, currentPage })
 })
 
 app.get('/contact', (req, res) => {
-    res.status(200).sendFile('views/contact.html', { root: __dirname })
-
+    let title = 'Me contacter';
+    currentPage = 'contact';
+    res.status(200).render('contact', { title, subtitle, currentPage })
 })
 
 app.use((req, res) => {
-    res.status(404).sendFile('views/404.html', { root: __dirname })
+    res.status(404).render('404')
 })
 
 app.listen(8080, "localhost", () => {
     console.log("Server is listening on port 8080");
 })
 
-
-
-// const http = require('http');
-// const fs = require('fs');
-
-// const server = http.createServer(
-//     (Request, Response) => {
-
-//         let fichier = "";
-
-//         Response.setHeader("content-type", "text/html");
-//         Response.write('<head><meta charset="UTF-8"></head>')
-
-//         if ((Request.url === '/' || Request.url === '/home') && Request.method === 'GET') {
-//             fichier = './views/home.html';
-//         } else if ((Request.url === '/formation') && Request.method === 'GET') {
-//             fichier = './views/formation.html';
-//         } else if ((Request.url === '/entreprise') && Request.method === 'GET') {
-//             fichier = './views/entreprise.html';
-//         } else if ((Request.url === '/profil') && Request.method === 'GET') {
-//             fichier = './views/profil.html';
-//         } else if ((Request.url === '/contact') && Request.method === 'GET') {
-//             fichier = './views/contact.html';
-//         } else {
-//             fichier = './views/404.html';
-//         }
-
-//         fs.readFile(fichier, (err, data) => {
-//             if(err) {
-//                 console.log(err);
-//                 Response.end()
-//             } else {
-//                 Response.write(data);
-//                 Response.end()
-//             }
-//         })
-//     }
-// )
-
-// server.listen(8080, "localhost", ()=>{
-//     console.log("Server is listening on port 8080");
-// })
 

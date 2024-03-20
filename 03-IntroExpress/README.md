@@ -1,61 +1,87 @@
+# 03 - IntroExpress
 
-# Codes d'état HTTP
+PS C:\Workspaces\coursNodeJs\03-IntroExpress> npm install ejs
 
-Afficher / masquer la sous-section Codes d'état
-1xx - Information
-2xx - Succès
-3xx - Redirection
-4xx - Erreur du client HTTP
-5xx - Erreur du serveur / du serveur d'application
+## definition du moteur de template
+app.set('view engine', 'ejs')
 
-## Installation EXPRESS
+La méthode sendFile est remplacée par render
 
-PS C:\Workspaces\coursNodeJs> npm install express
+## definition des views (si elles ne sont pas dans un dossier views, mais toto)
 
-![alt text](captures_images/renvoi_vers_fichiers.png)
-<img src="captures_images/renvoi_vers_fichiers.png" alt="drawing" width="200"/>
+app.set('views', 'toto');
 
-const express = require('express')
-const app = express()
+## Def de Props 
+ex : Title qui voyage d'un endroit à un autre : de app.js vers home.ejs
 
-app.get('/', (req, res) => {
-    res.sendFile('views/home.html', {root : __dirname})  // sendFile -> renvoi vers un fichier
-})
+![alt text](captures_images/def_titre_Scriptlet.png)
+<img src="captures_images/def_titre_Scriptlet.png" alt="drawing" width="400"/>
+
+![alt text](captures_images/def_titre_ds_app.png)
+<img src="captures_images/def_titre_ds_app.png" alt="drawing" width="400"/>
+
+## Définition de la variable title - balise Scriptlet
+<% let title = 'Portfolio de Sofiane' %>  
+
+<'h1 class="mb-1"><%= title %></h1>
+
+## Injection du header
+
+Création d'un dossier components/header.ejs dans /views
+
+Copier l'ensemble du header des autres pages
+
+Coller le lien :  <%- include('components/header'); %>
+dans chacune des pages.
+
+puis définition des titres et sous-titres pourchaque page dans app.ejs
+
+![alt text](captures_images/def_titre_ds_chaque_page.png)
+<img src="captures_images/def_titre_ds_chaque_page.png" alt="drawing" width="400"/>
+
+## Définition de la page active.
+
+Dans Header.ejs
+![alt text](captures_images/page_active_ds_header.png)
+<img src="captures_images/def_titre_ds_chaque_page.png" alt="drawing" width="400"/>
+
+Dans app.js avec définition de la variable : currentPage
+
+![alt text](captures_images/page_active_ds_app.png)
+<img src="captures_images/def_titre_ds_chaque_page.png" alt="drawing" width="400"/>
+
+## Utilisation Props projects pour injecter les 4 cartes sur la page home
+
+Création du fichier cardProject dans /components
+![alt text](captures_images/def_cardProjet.png)
+<img src="captures_images/def_cardProjet.png" alt="drawing" width="400"/>
 
 
-app.get('/home', (req, res) => {
-    res.sendFile('views/home.html', {root : __dirname})   
-    // res.send('<h1>Hello World !</h1>')  // send -> envoi un reponse
-})
-
-app.get('/formation', (req, res) => {
-    res.sendFile('views/formation.html', {root : __dirname})   // __dirname --> vers le chemin absolu
-})
+Suppression et injection des cartes via le fichier /components/cardProject
+![alt text](captures_images/ajout_props_projets_ds_home_app.png)
+<img src="captures_images/ajout_props_projets_ds_home_app.png" alt="drawing" width="400"/>
 
 
-![alt text](captures_images/renvoi_vers_pages.png)
+Définition du tableau d'objets projets (pour définir les cartes)
+![alt text](captures_images/def_props_projets.png)
+<img src="captures_images/def_props_projets.png" alt="drawing" width="400"/>
 
-![alt text](captures_images/redirection_page_home+chgt_status.png)
 
 
-#### Changement de status : 200 -> succès de la requête.
+![alt text](captures_images/ajout_props_projets_ds_home_app.png)
+<img src="captures_images/ajout_props_projets_ds_home_app.png" alt="drawing" width="400"/>
 
-![alt text](captures_images/chgt_status_200.png)
+## Nouveau fichier data.js avec subtitle et projects
 
-#### Page inexistante : redirection vers page 404
+![alt text](captures_images/data.png)
+<img src="captures_images/data.png" alt="drawing" width="400"/>
 
-![alt text](captures_images/erreur404_page_inexistante.png)
 
-app.use((req, res) => {
-    res.status(404).sendFile('views/404.html', {root : __dirname})   
-})
 
-#### next pour passer au cas suivant :
-il execute en meme tps qu'il passe à la suite
+Export du fichier data :
+module.exports = { subtitle, projects }
+![alt text](captures_images/export.png)
 
-![alt text](captures_images/next.png)
-
-## Middleware 
-Entre le client et le serveur
-
-![alt text](captures_images/What-is-Middleware.webp)
+Import dans le fichier app :
+let { subtitle, projects } = require('./data');
+![alt text](captures_images/import.png)
