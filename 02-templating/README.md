@@ -1,7 +1,10 @@
 
+# coursNodeJs
+# 02 - templating
 # Codes d'état HTTP
 
 Afficher / masquer la sous-section Codes d'état
+
 1xx - Information
 2xx - Succès
 3xx - Redirection
@@ -13,7 +16,6 @@ Afficher / masquer la sous-section Codes d'état
 PS C:\Workspaces\coursNodeJs> npm install express
 
 ![alt text](captures_images/renvoi_vers_fichiers.png)
-<img src="captures_images/renvoi_vers_fichiers.png" alt="drawing" width="200"/>
 
 const express = require('express')
 const app = express()
@@ -40,7 +42,7 @@ app.get('/formation', (req, res) => {
 
 #### Changement de status : 200 -> succès de la requête.
 
-![alt text](captures_images/chgt_status_200.png)
+![alt text](captures_images/chgt_status_400.png)
 
 #### Page inexistante : redirection vers page 404
 

@@ -1,20 +1,21 @@
-# NODE
+# coursNodeJs
+# 01 - Fondamentaux
 
 ## Rappels syntaxe : 
 https://code-garage.fr/blog/le-guide-simplifie-sur-la-syntaxe-markdown
 
-# Titre 1
-## Titre 2
+'# Titre 1
+'## Titre 2
 ...
-###### Titre 6
+'###### Titre 6
 
-_italique_
+'_italique_
 
-**gras**
+'**gras**
 
-**_gras/italique_**
+'**_gras/italique_**
 
-~~barré~~
+'~~barré~~
 
 ## Cours / Exercices
 
@@ -42,7 +43,6 @@ Bonjour je mappelle Jeremy
 57522J@PWVD3139 MINGW64 /c/Workspaces/coursNodeJs
 $ touch vehicule.js
 
-![alt text](captures/capture_voiture1.png)
 <img src="captures/capture_voiture1.png" alt="drawing" width="400"/>
 
 let voiture = {
@@ -66,7 +66,6 @@ diesel
 diesel
 
 
-![alt text](captures/capture_voiture1.png)
 <img src="captures/capture_voiture1.png" alt="drawing" width="400"/>
 
 let voiture = {
@@ -98,9 +97,8 @@ $ node vehicule.js
 
 ==> L'objet global de NODE est accessible de partout !!!!!!!
 
-
-![alt text](captures/capture_voiture_le_destructuring.png)
 <img src="captures/capture_voiture_le_destructuring.png" alt="drawing" width="400"/>
+
 //============== LE DESTUCTURING ===============
 
 let voiture = {
@@ -119,12 +117,10 @@ PS C:\Workspaces\coursNodeJs> node vehicule
 2024 diesel
 PS C:\Workspaces\coursNodeJs> 
 
-![alt text](captures/capture_formation.png)
 <img src="captures/capture_formation.png" alt="drawing" width="400"/>
 
 //========================
 require('./formation');
-![alt text](captures/capture_formation_intro.png)
 <img src="captures/capture_formation_intro.png" alt="drawing" width="400"/>
 
 #### Dans le terminal
@@ -141,11 +137,10 @@ $ node intro
   Avec les modules :
   dans formation.js
 
-![alt text](captures/capture_formation_module.png)
 <img src="captures/capture_formation_module.png" alt="drawing" width="400"/>
 
 dans intro.js
-![alt text](captures/capture_intro_module.png)
+
 <img src="captures/capture_intro_module.png" alt="drawing" width="400"/>
 
 #### Dans le terminal
@@ -163,11 +158,10 @@ $ node intro
 ### Avec le destructuring on peut exporter/ importer des élts d'un même module
 
 Dans formation :
-![alt text](captures/export_module.png)
 <img src="captures/export_module.png" alt="drawing" width="400"/>
 
-dans intro :
-![alt text](captures/import_module.png)
+Dans intro :
+
 <img src="captures/import_module.png" alt="drawing" width="400"/>
 
 #### Dans le terminal
@@ -177,7 +171,6 @@ $ node intro
 
 
 Intro : Info System
-![alt text](captures/commande_system.png)
 <img src="captures/commande_system.png" alt="drawing" width="400"/>
 
 #### Dans le terminal
@@ -196,7 +189,6 @@ Infos syst 'fs'
 'os' --> operating system
 'fs' --> file system
 
-![alt text](captures/infos_fs.png)
 <img src="captures/infos_fs.png" alt="drawing" width="400"/>
 
 //========= commande system 
@@ -230,7 +222,6 @@ PC <-- response <-- Server ( response et requete avec head, body,... )
 
 **! Rq :** Couper l'execution sur le Terminal : ctrl + c
 
-![alt text](captures/http_url.png)
 <img src="captures/http_url.png" alt="drawing" width="400"/>
 
 const http = require('http');
@@ -262,7 +253,6 @@ Server created successfully
 
 Pour obtenir la methode :
 
-![alt text](captures/http_url2.png)
 <img src="captures/http_url2.png" alt="drawing" width="400"/>
 
 const http = require('http');
@@ -278,20 +268,8 @@ server.listen(8080, "localhost", ()=>{
     console.log("Server is listening on port 8080");
 })
 
-![alt text](captures/http_url_3.png)
 <img src="captures/http_url_3.png" alt="drawing" width="400"/>
 
-const http = require('http');
-
-const server = http.createServer(
-    (Request, Response) => {
-        if (Request.url === '/formation') {
-            console.log('Vous êtes en formation chez Simplon');
-        } else if (Request.url === '/entreprise') {
-            console.log('Vous êtes en alternance chez la Maif');
-        }
-    }
-)
 
 server.listen(8080, "localhost", ()=>{
     console.log("Server is listening on port 8080");
@@ -304,21 +282,8 @@ $ node intro
 Server is listening on port 8080
 Vous êtes en alternance chez la Maif
 
-Autre ex 
+Autre ex :
 
-onst server = http.createServer(
-    (Request, Response) => {
-        if ((Request.url === '/' || Request.url === '/home') && Request.method === 'GET') {
-            console.log('Vous êtes sur la page home');
-        } else if ((Request.url === '/formation') && Request.method === 'GET') {
-            console.log('Vous êtes sur la page Simplon');
-        } else if ((Request.url === '/entreprise') && Request.method === 'GET') {
-            console.log('Vous êtes en alternance chez la Maif');
-        }
-    }
-)
-
-![alt text](captures/http_url_4.png)
 <img src="captures/http_url_4.png" alt="drawing" width="400"/>
 
 let rep = "";
@@ -365,8 +330,6 @@ switch (req.url) {
         break;
 }
 
-![alt text](http_url_5.
-png)
 <img src="captures/http_url_5.png" alt="drawing" width="400"/>
 
 const server = http.createServer(
@@ -410,7 +373,6 @@ PS C:\Workspaces\coursNodeJs> npm init -y
 dans script, inidiquer les fichiers à relancer automatiquement à chaque modif :
   "dev": "nodemon ./server.js"
 
-![alt text](captures/package_json.png)  
 <img src="captures/package_json.png" alt="drawing" width="400"/>
 
 ex : "start": "nodemon index.js" <== lancement de index.js
@@ -420,12 +382,10 @@ ex : "start": "nodemon index.js" <== lancement de index.js
 
 --> Voir le fichier gestionFichiers.js
 
-![alt text](captures/gestionFichiers1.png)
 <img src="captures/gestionFichiers1.png" alt="drawing" width="400"/>
 
 const fs = require('fs');
 
-![alt text](captures/gestionFichiers_dossier.png)
 <img src="captures/gestionFichiers_dossier.png" alt="drawing" width="400"/>
 
 ================= CREATION et SUPPRESSION de DOSSIER
@@ -471,7 +431,6 @@ fs.access('./monDossier', (err)=>{      // access -> Tester si le chemin existe 
     }
 })
 
-![alt text](captures/gestionFichiers_raccourcis.png)
 <img src="captures/gestionFichiers_raccourcis.png" alt="drawing" width="400"/>
 objet Error
 
@@ -482,7 +441,6 @@ touch gestionFichiers.js => création d'un fichier : gestionFichiers.js
 ctrl + MAJ + L ( ou ctrl + F2)==> sélection de TOUTES les occurences
 ctrl + d  ==> sélection UNE à UNE des occurences suivantes
 
-![alt text](captures/gestionFichiers_fichier.png)
 <img src="captures/gestionFichiers_fichier.png" alt="drawing" width="400"/>
 
 ================ CREATION d'un FICHIER dans un DOSSIER DIRECTEMENT ===================
@@ -526,7 +484,6 @@ const makeFile = () => {
     )
 }
 
-![alt text](captures/gestionFichiers_fichier_suppression_creation.png)
 <img src="captures/gestionFichiers_fichier_suppression_creation.png" alt="drawing" width="400"/>
 
 // === SUPPRESSION - CREATION d'un FICHIER =============
@@ -553,7 +510,6 @@ if (!fs.existsSync('./monDossier/monFichier.txt')) {
     })
 }
 
-![alt text](captures/gestionFichiers_fichier2.png)
 <img src="captures/gestionFichiers_fichier2.png" alt="drawing" width="400"/>
 
 OU ============
